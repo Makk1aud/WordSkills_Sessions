@@ -1,0 +1,57 @@
+﻿
+@{
+    var genderList = ViewBag.Genders as IEnumerable<Gender>;
+}
+@model PatientForRegistrationDTO
+
+<body>
+    <Center>
+        <form asp-action="RegistrationPatient" asp-controller="Registration" method="post">
+            <p>
+                <input asp-for="FirstName" placeholder="Имя"/>
+                <span asp-validation-for="FirstName"></span>
+            </p>
+            <p>
+                <input asp-for="LastName" placeholder="Фамилия" />
+                <span asp-validation-for="LastName"></span>
+            </p>
+            <p>
+                <input asp-for="MiddleName" placeholder="Отчество" />
+                <span asp-validation-for="MiddleName"></span>
+            </p>
+            <p>
+                <input asp-for="Passport" placeholder="Паспорт" />
+                <span asp-validation-for="Passport"></span>
+            </p>
+            <p>
+                <select asp-for="GenderId">
+                    @foreach(var item in genderList)
+                    {
+                        <option value="@item.GenderId">@item.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="GenderId"></span>
+            </p>
+            <p>
+                <input asp-for="Address" placeholder="Адрес" />
+                <span asp-validation-for="Address"></span>
+            </p>
+            <p>
+                <input asp-for="Phone" placeholder="Телефон" />
+                <span asp-validation-for="Phone"></span>
+            </p>
+            <p>
+                <input asp-for="Email" placeholder="Email" />
+                <span asp-validation-for="Email"></span>
+            </p>
+            <p>
+                <input asp-for="WorkPlace" placeholder="Место работы" />
+                <span asp-validation-for="WorkPlace"></span>
+            </p>
+            <p>
+                <span style="color: red">@ViewBag.Error</span>
+                <input type="submit" value="Зарегистрироваться"/>
+            </p>
+        </form>
+    </Center>
+</body>
