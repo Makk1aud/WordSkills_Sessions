@@ -8,7 +8,7 @@ namespace WordSkills_Session1.Controllers
     public class RegistrationController : Controller
     {
         private readonly WorldSkillsContext _context;
-
+        //
         public RegistrationController(WorldSkillsContext context)
         {
             _context = context;
