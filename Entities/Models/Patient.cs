@@ -1,5 +1,4 @@
-﻿using Entities.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Entities.Models;
@@ -28,7 +27,7 @@ public partial class Patient
 
     public string? PhotoPath { get; set; }
 
-    public int MedicalCardId { get; set; }
+    public int? MedicalCardId { get; set; }
 
     public virtual Gender Gender { get; set; } = null!;
 
@@ -36,7 +35,7 @@ public partial class Patient
 
     public virtual ICollection<Hospitalprescription> Hospitalprescriptions { get; set; } = new List<Hospitalprescription>();
 
-    public virtual Medicalcard MedicalCard { get; set; } = null!;
+    public virtual Medicalcard? MedicalCard { get; set; }
 
     public virtual ICollection<Medicalactivite> Medicalactivites { get; set; } = new List<Medicalactivite>();
 }

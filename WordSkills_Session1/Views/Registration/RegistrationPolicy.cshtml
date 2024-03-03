@@ -1,0 +1,22 @@
+﻿@{
+}
+
+@model PolesForCreationDTO
+<body>
+    <form asp-action="RegistrationPolicy" asp-controller="Registration" method="post">
+        <p>
+            <input asp-for="PolicyNum" placeholder="Номер полиса"/>
+            <span asp-validation-for="PolicyNum"></span>
+        </p>
+        <p>
+            <input asp-for="EndDate" />
+            <span asp-validation-for="EndDate"></span>
+        </p>
+        <p>
+            <input name="patientId" value="@ViewBag.PatientId" hidden/>
+        </p>
+        <p>
+            <input type="submit" value="Сохранить"/>
+        </p>
+    </form>
+</body>

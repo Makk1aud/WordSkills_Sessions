@@ -292,6 +292,8 @@ public partial class WorldSkillsContext : DbContext
 
             entity.ToTable("patients");
 
+            entity.HasIndex(e => e.Passport, "unique_passport").IsUnique();
+
             entity.Property(e => e.PatientId).HasColumnName("patient_id");
             entity.Property(e => e.Address)
                 .HasMaxLength(100)
@@ -330,7 +332,6 @@ public partial class WorldSkillsContext : DbContext
 
             entity.HasOne(d => d.MedicalCard).WithMany(p => p.Patients)
                 .HasForeignKey(d => d.MedicalCardId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_medical_card_id_patients_medicalcards");
         });
 
