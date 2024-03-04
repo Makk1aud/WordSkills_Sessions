@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Entities.Models;
 
-public partial class Medicalactivite
+public partial class MedicalActivite
 {
     public int MedicalActivitesId { get; set; }
 
@@ -23,9 +23,9 @@ public partial class Medicalactivite
 
     public virtual Doctor Doctor { get; set; } = null!;
 
-    public virtual ICollection<Hospitalprescription> Hospitalprescriptions { get; set; } = new List<Hospitalprescription>();
+    public virtual ICollection<HospitalPrescription> HospitalPrescriptions { get; set; } = new List<HospitalPrescription>();
 
-    public virtual Medicalactivetype MedicalType { get; set; } = null!;
+    public virtual MedicalActiveType MedicalType { get; set; } = null!;
 
     public virtual Patient Patient { get; set; } = null!;
 }

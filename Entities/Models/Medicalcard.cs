@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Entities.Models;
 
-public partial class Medicalcard
+public partial class MedicalCard
 {
     public int MedicalCardId { get; set; }
 
@@ -15,9 +15,9 @@ public partial class Medicalcard
 
     public int InsurancePolicyId { get; set; }
 
-    public virtual Insurancepole InsurancePolicy { get; set; } = null!;
+    public virtual InsurancePole InsurancePolicy { get; set; } = null!;
 
-    public virtual ICollection<Medicalhistory> Medicalhistories { get; set; } = new List<Medicalhistory>();
+    public virtual ICollection<MedicalHistory> MedicalHistories { get; set; } = new List<MedicalHistory>();
 
     public virtual ICollection<Patient> Patients { get; set; } = new List<Patient>();
 }

@@ -12,17 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Word_Skills_Desktop.Helpers;
+using Word_Skills_Desktop.Pages;
 
 namespace Word_Skills_Desktop
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            MainClass.FrameMainStruct = FrameMainStruct;
+            MainClass.Context = new Models.WorldSkillsEntities();
+            MainClass.FrameMainStruct.Navigate(new PageAuthorization());
         }
     }
 }

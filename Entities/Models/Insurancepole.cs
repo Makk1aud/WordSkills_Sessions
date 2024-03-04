@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Entities.Models;
 
-public partial class Insurancepole
+public partial class InsurancePole
 {
     public int InsurancePolicyId { get; set; }
 
@@ -11,5 +11,5 @@ public partial class Insurancepole
 
     public DateTime EndDate { get; set; }
 
-    public virtual ICollection<Medicalcard> Medicalcards { get; set; } = new List<Medicalcard>();
+    public virtual ICollection<MedicalCard> MedicalCards { get; set; } = new List<MedicalCard>();
 }

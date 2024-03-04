@@ -64,21 +64,21 @@ namespace WordSkills_Session1.Controllers
         {
             if(ModelState.IsValid)
             {
-                var poles = new Insurancepole
+                var poles = new InsurancePole
                 {
                     PolicyNum = policyForCreation.PolicyNum,
                     EndDate = (DateTime)policyForCreation.EndDate
                 };
 
-                _context.Insurancepoles.Add(poles);
+                _context.InsurancePoles.Add(poles);
                 await _context.SaveChangesAsync();
 
-                var medicineCard = new Medicalcard
+                var medicineCard = new MedicalCard
                 {
                     LastContactDate = DateTime.Now,
                     InsurancePolicyId = poles.InsurancePolicyId
                 };
-                _context.Medicalcards.Add(medicineCard);
+                _context.MedicalCards.Add(medicineCard);
                 await _context.SaveChangesAsync();
 
                 var patient = await _context.Patients.FirstOrDefaultAsync(x => x.PatientId == patientId);

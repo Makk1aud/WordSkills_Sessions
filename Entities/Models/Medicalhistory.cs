@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Entities.Models;
 
-public partial class Medicalhistory
+public partial class MedicalHistory
 {
     public int MedicalHistoryId { get; set; }
 
@@ -11,5 +11,5 @@ public partial class Medicalhistory
 
     public string Diagnose { get; set; } = null!;
 
-    public virtual Medicalcard MedicalCard { get; set; } = null!;
+    public virtual MedicalCard MedicalCard { get; set; } = null!;
 }

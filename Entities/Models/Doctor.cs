@@ -17,7 +17,7 @@ public partial class Doctor
 
     public int PositionId { get; set; }
 
-    public virtual ICollection<Medicalactivite> Medicalactivites { get; set; } = new List<Medicalactivite>();
+    public virtual ICollection<MedicalActivite> MedicalActivites { get; set; } = new List<MedicalActivite>();
 
     public virtual Position Position { get; set; } = null!;
 }
