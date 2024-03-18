@@ -26,6 +26,7 @@ namespace Word_Skills_Desktop.Pages
             this.patient = patient;
             this.DataContext = patient;
             ComboBoxMedType.ItemsSource = MainClass.Context.MedicalActiveTypes.ToList();
+            //
         }
 
         private void ButtonAddDianose_Click(object sender, RoutedEventArgs e)
