@@ -1,0 +1,70 @@
+﻿<Page x:Class="Word_Skills_Desktop.Pages.PageListOfPatients"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Word_Skills_Desktop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageListOfPatients">
+
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Сортирвка"
+                       FontSize="15pt"
+                       HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="Фамилия"
+                               FontSize="13pt"/>
+                    <TextBox Name="TextBoxSurnameFilter"
+                         Style="{StaticResource TextBoxDefault}"
+                         TextChanged="TextBoxesFilter_TextChanged"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Паспорт"
+                               FontSize="13pt"/>
+                    <TextBox Name="TextBoxPassportFilter"
+                         Style="{StaticResource TextBoxDefault}"
+                         TextChanged="TextBoxesFilter_TextChanged"/>
+                </StackPanel>
+                <Button Name="ButtonReset"
+                        Style="{StaticResource ButtonDefault}"
+                        Click="ButtonReset_Click"
+                        Content="Сбросить"/>
+            </StackPanel>
+            <DataGrid Name="DataGridPatients"
+                      CanUserAddRows="False"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      Width="650"
+                      Height="300">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя"
+                                        Width="10*"
+                                        Binding="{Binding Path=first_name}"/>
+                    <DataGridTextColumn Header="Фамилия"
+                                        Width="10*"
+                                        Binding="{Binding Path=last_name}"/>
+                    <DataGridTextColumn Header="Отчество"
+                                        Width="10*"
+                                        Binding="{Binding Path=middle_name}"/>
+                    <DataGridTextColumn Header="Паспорт"
+                                        Width="10*"
+                                        Binding="{Binding Path=passport}"/>
+                    <DataGridTemplateColumn Width="8*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="ButtonAboutPatient"
+                                        Content="Мед карта"
+                                        Click="ButtonAboutPatient_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+                      
+        </StackPanel>
+    </Grid>
+</Page>

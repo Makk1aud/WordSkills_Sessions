@@ -1,5 +1,4 @@
-﻿using Entities.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Entities.Models;
@@ -32,11 +31,11 @@ public partial class Patient
 
     public virtual Gender Gender { get; set; } = null!;
 
+    public virtual ICollection<HospitalPrescription> HospitalPrescriptions { get; set; } = new List<HospitalPrescription>();
+
     public virtual ICollection<Hospitalisation> Hospitalisations { get; set; } = new List<Hospitalisation>();
 
-    public virtual ICollection<Hospitalprescription> Hospitalprescriptions { get; set; } = new List<Hospitalprescription>();
+    public virtual ICollection<MedicalActivite> MedicalActivites { get; set; } = new List<MedicalActivite>();
 
-    public virtual Medicalcard MedicalCard { get; set; } = null!;
-
-    public virtual ICollection<Medicalactivite> Medicalactivites { get; set; } = new List<Medicalactivite>();
+    public virtual MedicalCard MedicalCard { get; set; } = null!;
 }

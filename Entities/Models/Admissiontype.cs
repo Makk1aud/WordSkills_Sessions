@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Entities.Models;
 
-public partial class Admissiontype
+public partial class AdmissionType
 {
     public int AdmissionTypeId { get; set; }
 

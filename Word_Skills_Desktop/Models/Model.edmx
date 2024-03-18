@@ -1,0 +1,902 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище WorldSkillsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdmissionTypes">
+          <Key>
+            <PropertyRef Name="admission_type_id" />
+          </Key>
+          <Property Name="admission_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="middle_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="login_code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="position_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="gender_id" />
+          </Key>
+          <Property Name="gender_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hospitalisations">
+          <Key>
+            <PropertyRef Name="hospitalisation_id" />
+          </Key>
+          <Property Name="hospitalisation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient_id" Type="int" Nullable="false" />
+          <Property Name="hospital_id" Type="int" Nullable="false" />
+          <Property Name="admission_type_id" Type="int" Nullable="false" />
+          <Property Name="hospitalisation_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="hospitalisation_date" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="purpose" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="diagnose" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="HospitalPrescriptions">
+          <Key>
+            <PropertyRef Name="hospital_prescription_id" />
+          </Key>
+          <Property Name="hospital_prescription_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient_id" Type="int" Nullable="false" />
+          <Property Name="medical_activites_id" Type="int" Nullable="false" />
+          <Property Name="drug_title" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hospitals">
+          <Key>
+            <PropertyRef Name="hospital_id" />
+          </Key>
+          <Property Name="hospital_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsurancePoles">
+          <Key>
+            <PropertyRef Name="insurance_policy_id" />
+          </Key>
+          <Property Name="insurance_policy_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="policy_num" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="end_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalActiveTypes">
+          <Key>
+            <PropertyRef Name="medical_type_id" />
+          </Key>
+          <Property Name="medical_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalActivites">
+          <Key>
+            <PropertyRef Name="medical_activites_id" />
+          </Key>
+          <Property Name="medical_activites_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient_id" Type="int" Nullable="false" />
+          <Property Name="doctor_id" Type="int" Nullable="false" />
+          <Property Name="medical_type_id" Type="int" Nullable="false" />
+          <Property Name="holding_date" Type="datetime" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="result" Type="varchar(max)" Nullable="false" />
+          <Property Name="recomendation" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalCards">
+          <Key>
+            <PropertyRef Name="medical_card_id" />
+          </Key>
+          <Property Name="medical_card_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="issue_date" Type="datetime" />
+          <Property Name="last_contact_date" Type="datetime" Nullable="false" />
+          <Property Name="next_contact_date" Type="datetime" />
+          <Property Name="insurance_policy_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalHistories">
+          <Key>
+            <PropertyRef Name="medical_history_id" />
+          </Key>
+          <Property Name="medical_history_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="medical_card_id" Type="int" Nullable="false" />
+          <Property Name="diagnose" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="middle_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="passport" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="gender_id" Type="int" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="work_place" Type="varchar" MaxLength="100" />
+          <Property Name="photo_path" Type="varchar" MaxLength="100" />
+          <Property Name="medical_card_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="position_id" />
+          </Key>
+          <Property Name="position_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position_title" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_admission_type_id_Hospitalisations_AdmissionTypes">
+          <End Role="AdmissionTypes" Type="Self.AdmissionTypes" Multiplicity="1" />
+          <End Role="Hospitalisations" Type="Self.Hospitalisations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdmissionTypes">
+              <PropertyRef Name="admission_type_id" />
+            </Principal>
+            <Dependent Role="Hospitalisations">
+              <PropertyRef Name="admission_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_doctor_id_MedicalActivites_Doctors">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
+          <End Role="MedicalActivites" Type="Self.MedicalActivites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="doctor_id" />
+            </Principal>
+            <Dependent Role="MedicalActivites">
+              <PropertyRef Name="doctor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_gender_id_Patients_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="gender_id" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hospital_id_Hospitalisations_Hospitals">
+          <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="1" />
+          <End Role="Hospitalisations" Type="Self.Hospitalisations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hospitals">
+              <PropertyRef Name="hospital_id" />
+            </Principal>
+            <Dependent Role="Hospitalisations">
+              <PropertyRef Name="hospital_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_insurance_policy_id_MedicalCards_InsurancePoles">
+          <End Role="InsurancePoles" Type="Self.InsurancePoles" Multiplicity="1" />
+          <End Role="MedicalCards" Type="Self.MedicalCards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsurancePoles">
+              <PropertyRef Name="insurance_policy_id" />
+            </Principal>
+            <Dependent Role="MedicalCards">
+              <PropertyRef Name="insurance_policy_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_medical_activites_id_HospitalPrescriptions_MedicalActivites">
+          <End Role="MedicalActivites" Type="Self.MedicalActivites" Multiplicity="1" />
+          <End Role="HospitalPrescriptions" Type="Self.HospitalPrescriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalActivites">
+              <PropertyRef Name="medical_activites_id" />
+            </Principal>
+            <Dependent Role="HospitalPrescriptions">
+              <PropertyRef Name="medical_activites_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_medical_card_id_MedicalHistories_MedicalCards">
+          <End Role="MedicalCards" Type="Self.MedicalCards" Multiplicity="1" />
+          <End Role="MedicalHistories" Type="Self.MedicalHistories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalCards">
+              <PropertyRef Name="medical_card_id" />
+            </Principal>
+            <Dependent Role="MedicalHistories">
+              <PropertyRef Name="medical_card_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_medical_card_id_Patients_MedicalCards">
+          <End Role="MedicalCards" Type="Self.MedicalCards" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalCards">
+              <PropertyRef Name="medical_card_id" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="medical_card_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_medical_type_id_MedicalActivites_MedicalActiveTypes">
+          <End Role="MedicalActiveTypes" Type="Self.MedicalActiveTypes" Multiplicity="1" />
+          <End Role="MedicalActivites" Type="Self.MedicalActivites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalActiveTypes">
+              <PropertyRef Name="medical_type_id" />
+            </Principal>
+            <Dependent Role="MedicalActivites">
+              <PropertyRef Name="medical_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patient_id_Hospitalisations_Patients">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="Hospitalisations" Type="Self.Hospitalisations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="Hospitalisations">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patient_id_HospitalPrescriptions_Patients">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="HospitalPrescriptions" Type="Self.HospitalPrescriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="HospitalPrescriptions">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patient_id_MedicalActivites_Patients">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="MedicalActivites" Type="Self.MedicalActivites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="MedicalActivites">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_position_id_Doctors_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Doctors">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище WorldSkillsModelContainer">
+          <EntitySet Name="AdmissionTypes" EntityType="Self.AdmissionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hospitalisations" EntityType="Self.Hospitalisations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HospitalPrescriptions" EntityType="Self.HospitalPrescriptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hospitals" EntityType="Self.Hospitals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsurancePoles" EntityType="Self.InsurancePoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalActiveTypes" EntityType="Self.MedicalActiveTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalActivites" EntityType="Self.MedicalActivites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalCards" EntityType="Self.MedicalCards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalHistories" EntityType="Self.MedicalHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_admission_type_id_Hospitalisations_AdmissionTypes" Association="Self.FK_admission_type_id_Hospitalisations_AdmissionTypes">
+            <End Role="AdmissionTypes" EntitySet="AdmissionTypes" />
+            <End Role="Hospitalisations" EntitySet="Hospitalisations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_doctor_id_MedicalActivites_Doctors" Association="Self.FK_doctor_id_MedicalActivites_Doctors">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="MedicalActivites" EntitySet="MedicalActivites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_gender_id_Patients_Genders" Association="Self.FK_gender_id_Patients_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hospital_id_Hospitalisations_Hospitals" Association="Self.FK_hospital_id_Hospitalisations_Hospitals">
+            <End Role="Hospitals" EntitySet="Hospitals" />
+            <End Role="Hospitalisations" EntitySet="Hospitalisations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_insurance_policy_id_MedicalCards_InsurancePoles" Association="Self.FK_insurance_policy_id_MedicalCards_InsurancePoles">
+            <End Role="InsurancePoles" EntitySet="InsurancePoles" />
+            <End Role="MedicalCards" EntitySet="MedicalCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_medical_activites_id_HospitalPrescriptions_MedicalActivites" Association="Self.FK_medical_activites_id_HospitalPrescriptions_MedicalActivites">
+            <End Role="MedicalActivites" EntitySet="MedicalActivites" />
+            <End Role="HospitalPrescriptions" EntitySet="HospitalPrescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_medical_card_id_MedicalHistories_MedicalCards" Association="Self.FK_medical_card_id_MedicalHistories_MedicalCards">
+            <End Role="MedicalCards" EntitySet="MedicalCards" />
+            <End Role="MedicalHistories" EntitySet="MedicalHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_medical_card_id_Patients_MedicalCards" Association="Self.FK_medical_card_id_Patients_MedicalCards">
+            <End Role="MedicalCards" EntitySet="MedicalCards" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_medical_type_id_MedicalActivites_MedicalActiveTypes" Association="Self.FK_medical_type_id_MedicalActivites_MedicalActiveTypes">
+            <End Role="MedicalActiveTypes" EntitySet="MedicalActiveTypes" />
+            <End Role="MedicalActivites" EntitySet="MedicalActivites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patient_id_Hospitalisations_Patients" Association="Self.FK_patient_id_Hospitalisations_Patients">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Hospitalisations" EntitySet="Hospitalisations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patient_id_HospitalPrescriptions_Patients" Association="Self.FK_patient_id_HospitalPrescriptions_Patients">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="HospitalPrescriptions" EntitySet="HospitalPrescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patient_id_MedicalActivites_Patients" Association="Self.FK_patient_id_MedicalActivites_Patients">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="MedicalActivites" EntitySet="MedicalActivites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_position_id_Doctors_Positions" Association="Self.FK_position_id_Doctors_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Doctors" EntitySet="Doctors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WorldSkillsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdmissionTypes">
+          <Key>
+            <PropertyRef Name="admission_type_id" />
+          </Key>
+          <Property Name="admission_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Hospitalisations" Relationship="Self.FK_admission_type_id_Hospitalisations_AdmissionTypes" FromRole="AdmissionTypes" ToRole="Hospitalisations" />
+        </EntityType>
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="middle_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="login_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="position_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MedicalActivites" Relationship="Self.FK_doctor_id_MedicalActivites_Doctors" FromRole="Doctors" ToRole="MedicalActivites" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK_position_id_Doctors_Positions" FromRole="Doctors" ToRole="Positions" />
+        </EntityType>
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="gender_id" />
+          </Key>
+          <Property Name="gender_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_gender_id_Patients_Genders" FromRole="Genders" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="Hospitalisations">
+          <Key>
+            <PropertyRef Name="hospitalisation_id" />
+          </Key>
+          <Property Name="hospitalisation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient_id" Type="Int32" Nullable="false" />
+          <Property Name="hospital_id" Type="Int32" Nullable="false" />
+          <Property Name="admission_type_id" Type="Int32" Nullable="false" />
+          <Property Name="hospitalisation_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hospitalisation_date" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="purpose" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="diagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AdmissionTypes" Relationship="Self.FK_admission_type_id_Hospitalisations_AdmissionTypes" FromRole="Hospitalisations" ToRole="AdmissionTypes" />
+          <NavigationProperty Name="Hospitals" Relationship="Self.FK_hospital_id_Hospitalisations_Hospitals" FromRole="Hospitalisations" ToRole="Hospitals" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_patient_id_Hospitalisations_Patients" FromRole="Hospitalisations" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="HospitalPrescriptions">
+          <Key>
+            <PropertyRef Name="hospital_prescription_id" />
+          </Key>
+          <Property Name="hospital_prescription_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient_id" Type="Int32" Nullable="false" />
+          <Property Name="medical_activites_id" Type="Int32" Nullable="false" />
+          <Property Name="drug_title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MedicalActivites" Relationship="Self.FK_medical_activites_id_HospitalPrescriptions_MedicalActivites" FromRole="HospitalPrescriptions" ToRole="MedicalActivites" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_patient_id_HospitalPrescriptions_Patients" FromRole="HospitalPrescriptions" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="Hospitals">
+          <Key>
+            <PropertyRef Name="hospital_id" />
+          </Key>
+          <Property Name="hospital_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Hospitalisations" Relationship="Self.FK_hospital_id_Hospitalisations_Hospitals" FromRole="Hospitals" ToRole="Hospitalisations" />
+        </EntityType>
+        <EntityType Name="InsurancePoles">
+          <Key>
+            <PropertyRef Name="insurance_policy_id" />
+          </Key>
+          <Property Name="insurance_policy_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="policy_num" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MedicalCards" Relationship="Self.FK_insurance_policy_id_MedicalCards_InsurancePoles" FromRole="InsurancePoles" ToRole="MedicalCards" />
+        </EntityType>
+        <EntityType Name="MedicalActiveTypes">
+          <Key>
+            <PropertyRef Name="medical_type_id" />
+          </Key>
+          <Property Name="medical_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MedicalActivites" Relationship="Self.FK_medical_type_id_MedicalActivites_MedicalActiveTypes" FromRole="MedicalActiveTypes" ToRole="MedicalActivites" />
+        </EntityType>
+        <EntityType Name="MedicalActivites">
+          <Key>
+            <PropertyRef Name="medical_activites_id" />
+          </Key>
+          <Property Name="medical_activites_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient_id" Type="Int32" Nullable="false" />
+          <Property Name="doctor_id" Type="Int32" Nullable="false" />
+          <Property Name="medical_type_id" Type="Int32" Nullable="false" />
+          <Property Name="holding_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="result" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="recomendation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Doctors" Relationship="Self.FK_doctor_id_MedicalActivites_Doctors" FromRole="MedicalActivites" ToRole="Doctors" />
+          <NavigationProperty Name="HospitalPrescriptions" Relationship="Self.FK_medical_activites_id_HospitalPrescriptions_MedicalActivites" FromRole="MedicalActivites" ToRole="HospitalPrescriptions" />
+          <NavigationProperty Name="MedicalActiveTypes" Relationship="Self.FK_medical_type_id_MedicalActivites_MedicalActiveTypes" FromRole="MedicalActivites" ToRole="MedicalActiveTypes" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_patient_id_MedicalActivites_Patients" FromRole="MedicalActivites" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="MedicalCards">
+          <Key>
+            <PropertyRef Name="medical_card_id" />
+          </Key>
+          <Property Name="medical_card_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="issue_date" Type="DateTime" Precision="3" />
+          <Property Name="last_contact_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="next_contact_date" Type="DateTime" Precision="3" />
+          <Property Name="insurance_policy_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InsurancePoles" Relationship="Self.FK_insurance_policy_id_MedicalCards_InsurancePoles" FromRole="MedicalCards" ToRole="InsurancePoles" />
+          <NavigationProperty Name="MedicalHistories" Relationship="Self.FK_medical_card_id_MedicalHistories_MedicalCards" FromRole="MedicalCards" ToRole="MedicalHistories" />
+          <NavigationProperty Name="Patients" Relationship="Self.FK_medical_card_id_Patients_MedicalCards" FromRole="MedicalCards" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="MedicalHistories">
+          <Key>
+            <PropertyRef Name="medical_history_id" />
+          </Key>
+          <Property Name="medical_history_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="medical_card_id" Type="Int32" Nullable="false" />
+          <Property Name="diagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MedicalCards" Relationship="Self.FK_medical_card_id_MedicalHistories_MedicalCards" FromRole="MedicalHistories" ToRole="MedicalCards" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="middle_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="passport" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender_id" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="work_place" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="photo_path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="medical_card_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Genders" Relationship="Self.FK_gender_id_Patients_Genders" FromRole="Patients" ToRole="Genders" />
+          <NavigationProperty Name="Hospitalisations" Relationship="Self.FK_patient_id_Hospitalisations_Patients" FromRole="Patients" ToRole="Hospitalisations" />
+          <NavigationProperty Name="HospitalPrescriptions" Relationship="Self.FK_patient_id_HospitalPrescriptions_Patients" FromRole="Patients" ToRole="HospitalPrescriptions" />
+          <NavigationProperty Name="MedicalActivites" Relationship="Self.FK_patient_id_MedicalActivites_Patients" FromRole="Patients" ToRole="MedicalActivites" />
+          <NavigationProperty Name="MedicalCards" Relationship="Self.FK_medical_card_id_Patients_MedicalCards" FromRole="Patients" ToRole="MedicalCards" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="position_id" />
+          </Key>
+          <Property Name="position_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Doctors" Relationship="Self.FK_position_id_Doctors_Positions" FromRole="Positions" ToRole="Doctors" />
+        </EntityType>
+        <Association Name="FK_admission_type_id_Hospitalisations_AdmissionTypes">
+          <End Role="AdmissionTypes" Type="Self.AdmissionTypes" Multiplicity="1" />
+          <End Role="Hospitalisations" Type="Self.Hospitalisations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdmissionTypes">
+              <PropertyRef Name="admission_type_id" />
+            </Principal>
+            <Dependent Role="Hospitalisations">
+              <PropertyRef Name="admission_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_doctor_id_MedicalActivites_Doctors">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
+          <End Role="MedicalActivites" Type="Self.MedicalActivites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="doctor_id" />
+            </Principal>
+            <Dependent Role="MedicalActivites">
+              <PropertyRef Name="doctor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_position_id_Doctors_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Doctors">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_gender_id_Patients_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="gender_id" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="gender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_hospital_id_Hospitalisations_Hospitals">
+          <End Role="Hospitals" Type="Self.Hospitals" Multiplicity="1" />
+          <End Role="Hospitalisations" Type="Self.Hospitalisations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hospitals">
+              <PropertyRef Name="hospital_id" />
+            </Principal>
+            <Dependent Role="Hospitalisations">
+              <PropertyRef Name="hospital_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patient_id_Hospitalisations_Patients">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="Hospitalisations" Type="Self.Hospitalisations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="Hospitalisations">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_medical_activites_id_HospitalPrescriptions_MedicalActivites">
+          <End Role="MedicalActivites" Type="Self.MedicalActivites" Multiplicity="1" />
+          <End Role="HospitalPrescriptions" Type="Self.HospitalPrescriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalActivites">
+              <PropertyRef Name="medical_activites_id" />
+            </Principal>
+            <Dependent Role="HospitalPrescriptions">
+              <PropertyRef Name="medical_activites_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patient_id_HospitalPrescriptions_Patients">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="HospitalPrescriptions" Type="Self.HospitalPrescriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="HospitalPrescriptions">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_insurance_policy_id_MedicalCards_InsurancePoles">
+          <End Role="InsurancePoles" Type="Self.InsurancePoles" Multiplicity="1" />
+          <End Role="MedicalCards" Type="Self.MedicalCards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsurancePoles">
+              <PropertyRef Name="insurance_policy_id" />
+            </Principal>
+            <Dependent Role="MedicalCards">
+              <PropertyRef Name="insurance_policy_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_medical_type_id_MedicalActivites_MedicalActiveTypes">
+          <End Role="MedicalActiveTypes" Type="Self.MedicalActiveTypes" Multiplicity="1" />
+          <End Role="MedicalActivites" Type="Self.MedicalActivites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalActiveTypes">
+              <PropertyRef Name="medical_type_id" />
+            </Principal>
+            <Dependent Role="MedicalActivites">
+              <PropertyRef Name="medical_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_patient_id_MedicalActivites_Patients">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="MedicalActivites" Type="Self.MedicalActivites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="patient_id" />
+            </Principal>
+            <Dependent Role="MedicalActivites">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_medical_card_id_MedicalHistories_MedicalCards">
+          <End Role="MedicalCards" Type="Self.MedicalCards" Multiplicity="1" />
+          <End Role="MedicalHistories" Type="Self.MedicalHistories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalCards">
+              <PropertyRef Name="medical_card_id" />
+            </Principal>
+            <Dependent Role="MedicalHistories">
+              <PropertyRef Name="medical_card_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_medical_card_id_Patients_MedicalCards">
+          <End Role="MedicalCards" Type="Self.MedicalCards" Multiplicity="1" />
+          <End Role="Patients" Type="Self.Patients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalCards">
+              <PropertyRef Name="medical_card_id" />
+            </Principal>
+            <Dependent Role="Patients">
+              <PropertyRef Name="medical_card_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WorldSkillsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdmissionTypes" EntityType="Self.AdmissionTypes" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" />
+          <EntitySet Name="Genders" EntityType="Self.Genders" />
+          <EntitySet Name="Hospitalisations" EntityType="Self.Hospitalisations" />
+          <EntitySet Name="HospitalPrescriptions" EntityType="Self.HospitalPrescriptions" />
+          <EntitySet Name="Hospitals" EntityType="Self.Hospitals" />
+          <EntitySet Name="InsurancePoles" EntityType="Self.InsurancePoles" />
+          <EntitySet Name="MedicalActiveTypes" EntityType="Self.MedicalActiveTypes" />
+          <EntitySet Name="MedicalActivites" EntityType="Self.MedicalActivites" />
+          <EntitySet Name="MedicalCards" EntityType="Self.MedicalCards" />
+          <EntitySet Name="MedicalHistories" EntityType="Self.MedicalHistories" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" />
+          <AssociationSet Name="FK_admission_type_id_Hospitalisations_AdmissionTypes" Association="Self.FK_admission_type_id_Hospitalisations_AdmissionTypes">
+            <End Role="AdmissionTypes" EntitySet="AdmissionTypes" />
+            <End Role="Hospitalisations" EntitySet="Hospitalisations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_doctor_id_MedicalActivites_Doctors" Association="Self.FK_doctor_id_MedicalActivites_Doctors">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="MedicalActivites" EntitySet="MedicalActivites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_position_id_Doctors_Positions" Association="Self.FK_position_id_Doctors_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Doctors" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_gender_id_Patients_Genders" Association="Self.FK_gender_id_Patients_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_hospital_id_Hospitalisations_Hospitals" Association="Self.FK_hospital_id_Hospitalisations_Hospitals">
+            <End Role="Hospitals" EntitySet="Hospitals" />
+            <End Role="Hospitalisations" EntitySet="Hospitalisations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patient_id_Hospitalisations_Patients" Association="Self.FK_patient_id_Hospitalisations_Patients">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Hospitalisations" EntitySet="Hospitalisations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_medical_activites_id_HospitalPrescriptions_MedicalActivites" Association="Self.FK_medical_activites_id_HospitalPrescriptions_MedicalActivites">
+            <End Role="MedicalActivites" EntitySet="MedicalActivites" />
+            <End Role="HospitalPrescriptions" EntitySet="HospitalPrescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patient_id_HospitalPrescriptions_Patients" Association="Self.FK_patient_id_HospitalPrescriptions_Patients">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="HospitalPrescriptions" EntitySet="HospitalPrescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_insurance_policy_id_MedicalCards_InsurancePoles" Association="Self.FK_insurance_policy_id_MedicalCards_InsurancePoles">
+            <End Role="InsurancePoles" EntitySet="InsurancePoles" />
+            <End Role="MedicalCards" EntitySet="MedicalCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_medical_type_id_MedicalActivites_MedicalActiveTypes" Association="Self.FK_medical_type_id_MedicalActivites_MedicalActiveTypes">
+            <End Role="MedicalActiveTypes" EntitySet="MedicalActiveTypes" />
+            <End Role="MedicalActivites" EntitySet="MedicalActivites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_patient_id_MedicalActivites_Patients" Association="Self.FK_patient_id_MedicalActivites_Patients">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="MedicalActivites" EntitySet="MedicalActivites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_medical_card_id_MedicalHistories_MedicalCards" Association="Self.FK_medical_card_id_MedicalHistories_MedicalCards">
+            <End Role="MedicalCards" EntitySet="MedicalCards" />
+            <End Role="MedicalHistories" EntitySet="MedicalHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_medical_card_id_Patients_MedicalCards" Association="Self.FK_medical_card_id_Patients_MedicalCards">
+            <End Role="MedicalCards" EntitySet="MedicalCards" />
+            <End Role="Patients" EntitySet="Patients" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище WorldSkillsModelContainer" CdmEntityContainer="WorldSkillsEntities">
+          <EntitySetMapping Name="AdmissionTypes">
+            <EntityTypeMapping TypeName="WorldSkillsModel.AdmissionTypes">
+              <MappingFragment StoreEntitySet="AdmissionTypes">
+                <ScalarProperty Name="admission_type_id" ColumnName="admission_type_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="WorldSkillsModel.Doctors">
+              <MappingFragment StoreEntitySet="Doctors">
+                <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="login_code" ColumnName="login_code" />
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="WorldSkillsModel.Genders">
+              <MappingFragment StoreEntitySet="Genders">
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hospitalisations">
+            <EntityTypeMapping TypeName="WorldSkillsModel.Hospitalisations">
+              <MappingFragment StoreEntitySet="Hospitalisations">
+                <ScalarProperty Name="hospitalisation_id" ColumnName="hospitalisation_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="hospital_id" ColumnName="hospital_id" />
+                <ScalarProperty Name="admission_type_id" ColumnName="admission_type_id" />
+                <ScalarProperty Name="hospitalisation_code" ColumnName="hospitalisation_code" />
+                <ScalarProperty Name="hospitalisation_date" ColumnName="hospitalisation_date" />
+                <ScalarProperty Name="purpose" ColumnName="purpose" />
+                <ScalarProperty Name="diagnose" ColumnName="diagnose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HospitalPrescriptions">
+            <EntityTypeMapping TypeName="WorldSkillsModel.HospitalPrescriptions">
+              <MappingFragment StoreEntitySet="HospitalPrescriptions">
+                <ScalarProperty Name="hospital_prescription_id" ColumnName="hospital_prescription_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="medical_activites_id" ColumnName="medical_activites_id" />
+                <ScalarProperty Name="drug_title" ColumnName="drug_title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hospitals">
+            <EntityTypeMapping TypeName="WorldSkillsModel.Hospitals">
+              <MappingFragment StoreEntitySet="Hospitals">
+                <ScalarProperty Name="hospital_id" ColumnName="hospital_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsurancePoles">
+            <EntityTypeMapping TypeName="WorldSkillsModel.InsurancePoles">
+              <MappingFragment StoreEntitySet="InsurancePoles">
+                <ScalarProperty Name="insurance_policy_id" ColumnName="insurance_policy_id" />
+                <ScalarProperty Name="policy_num" ColumnName="policy_num" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalActiveTypes">
+            <EntityTypeMapping TypeName="WorldSkillsModel.MedicalActiveTypes">
+              <MappingFragment StoreEntitySet="MedicalActiveTypes">
+                <ScalarProperty Name="medical_type_id" ColumnName="medical_type_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalActivites">
+            <EntityTypeMapping TypeName="WorldSkillsModel.MedicalActivites">
+              <MappingFragment StoreEntitySet="MedicalActivites">
+                <ScalarProperty Name="medical_activites_id" ColumnName="medical_activites_id" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+                <ScalarProperty Name="medical_type_id" ColumnName="medical_type_id" />
+                <ScalarProperty Name="holding_date" ColumnName="holding_date" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="recomendation" ColumnName="recomendation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalCards">
+            <EntityTypeMapping TypeName="WorldSkillsModel.MedicalCards">
+              <MappingFragment StoreEntitySet="MedicalCards">
+                <ScalarProperty Name="medical_card_id" ColumnName="medical_card_id" />
+                <ScalarProperty Name="issue_date" ColumnName="issue_date" />
+                <ScalarProperty Name="last_contact_date" ColumnName="last_contact_date" />
+                <ScalarProperty Name="next_contact_date" ColumnName="next_contact_date" />
+                <ScalarProperty Name="insurance_policy_id" ColumnName="insurance_policy_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalHistories">
+            <EntityTypeMapping TypeName="WorldSkillsModel.MedicalHistories">
+              <MappingFragment StoreEntitySet="MedicalHistories">
+                <ScalarProperty Name="medical_history_id" ColumnName="medical_history_id" />
+                <ScalarProperty Name="medical_card_id" ColumnName="medical_card_id" />
+                <ScalarProperty Name="diagnose" ColumnName="diagnose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="WorldSkillsModel.Patients">
+              <MappingFragment StoreEntitySet="Patients">
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="passport" ColumnName="passport" />
+                <ScalarProperty Name="gender_id" ColumnName="gender_id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="work_place" ColumnName="work_place" />
+                <ScalarProperty Name="photo_path" ColumnName="photo_path" />
+                <ScalarProperty Name="medical_card_id" ColumnName="medical_card_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="WorldSkillsModel.Positions">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+                <ScalarProperty Name="position_title" ColumnName="position_title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
